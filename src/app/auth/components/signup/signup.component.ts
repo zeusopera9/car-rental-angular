@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
+import { NzMessageService } from "ng-zorro-antd/message";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +13,10 @@ export class SignupComponent {
   isSpinning:boolean=false;
   signUpForm!: FormGroup;
 
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder,
+    private authService:AuthService,
+    private message: NzMessageService,
+    private router: Router) { }
 
   ngOnInit() {
     this.signUpForm = this.fb.group({
@@ -33,6 +38,15 @@ export class SignupComponent {
 
   register() {
     console.log(this.signUpForm.value);
+    this.authService.register(this.signUpForm.value).subscribe((res) => {
+      console.log(res);
+      if(res.id != null) {
+        this.message.success("Signup Successful", { nzDuration: 5000});
+        this.router.navigateByUrl("/login")
+      } else {
+        this.message.error("Something Went Wrong", { nzDuration: 5000});
+      }
+    })
   }
 
 }
