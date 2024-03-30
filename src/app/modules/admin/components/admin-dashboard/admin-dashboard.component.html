@@ -20,6 +20,8 @@
                 <hr>
                 <div style="float: right">
                     <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" 
+                        routerLink="/admin/car/{{car.id}}">Update</button>
+                    <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" 
                         (click)="deleteCar(car.id)" nzDanger>Delete</button>
                 </div>
             </div>

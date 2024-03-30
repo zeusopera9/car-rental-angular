@@ -26,7 +26,7 @@ export class AdminDashboardComponent {
     this.adminService.getAllCars().subscribe((res) => {
       console.log(res);
       res.forEach(element => {
-        element.processedImg = 'data:image/jpeg;base64' + element.returnedImage;
+        element.processedImg = 'data:image/jpeg;base64,' + element.returnedImage;
         this.cars.push(element);
       })
     })
