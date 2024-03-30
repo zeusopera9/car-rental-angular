@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,7 +12,9 @@ export class AdminDashboardComponent {
 
   cars: any = [];
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService,
+    private message: NzMessageService, 
+    private router: Router) {
 
   }
 
@@ -25,6 +29,17 @@ export class AdminDashboardComponent {
         element.processedImg = 'data:image/jpeg;base64' + element.returnedImage;
         this.cars.push(element);
       })
+    })
+  }
+
+  deleteCar(id: number) {
+    console.log(id);
+    this.adminService.deleteCar(id).subscribe((res) => {
+      this.getAllCars();
+      this.message.success("Car Deleted Successfully", { nzDuration: 5000 });
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     })
   }
 
