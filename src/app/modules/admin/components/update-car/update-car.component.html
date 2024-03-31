@@ -9,7 +9,7 @@
                 <form nz-form [formGroup]="updateForm">
                     <div nz-row>
                         <div class="file-upload-container">
-                            <!-- <label class="file-upload-label">
+                            <label class="file-upload-label">
                                 <span style="margin-left: 100px">Select a File</span>
                                 <input type="file" nz-button nzType="primary" accept="image/x-png, image/gif, image/jpeg"
                                     (change)="onFileSelected($event)" />
@@ -19,7 +19,7 @@
                                 <div class="circle-image">
                                     <img [src]="imagePreview" alt="Existing Image" class="preview-image" />
                                 </div>
-                            </div> -->
+                            </div>
 
                             <div *ngIf="existingImage" class="image-preview">
                                 <div class="circle-image">
@@ -104,7 +104,8 @@
                         </div>
                     </div>
 
-                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">
+                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"
+                        (click)="updateCar()">
                         Update
                     </button>
                 </form>
