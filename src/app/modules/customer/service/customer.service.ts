@@ -24,6 +24,12 @@ export class CustomerService {
     })
   }
 
+  bookACar(bookACarDto: any):Observable<any> {
+    return this.http.post(BASIC_URL + "/api/customer/car/book", bookACarDto, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
   createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
     return authHeaders.set(
