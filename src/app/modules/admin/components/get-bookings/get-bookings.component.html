@@ -26,14 +26,14 @@
                         {{ booking.bookCarStatus  }}
                     </strong>
                 </td>
-                <!-- <td>
+                <td>
                     <span *ngIf="booking.bookCarStatus == 'PENDING'">
                         <button style="margin-left: 10px;" ngSize="small" nz-button nzType="primary"
-                            (click)="changeBookingStatus(booking.id, 'Approve')" nzDanger>Approve</button>
+                            (click)="changeBookingStatus(booking.id, 'Approve')" >Approve</button>
                         <button style="margin-left: 10px;" ngSize="small" nz-button nzType="primary"
                             (click)="changeBookingStatus(booking.id, 'Reject')" nzDanger>Reject</button>
                     </span>
-                </td> -->
+                </td>
             </tr>
         </tbody>
     </nz-table>

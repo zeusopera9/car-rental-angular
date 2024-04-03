@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-get-bookings',
@@ -11,7 +12,8 @@ export class GetBookingsComponent {
   bookings: any;
   isSpinning = false;
 
-  constructor(private adminService: AdminService) { 
+  constructor(private adminService: AdminService,
+    private message: NzMessageService) { 
     this.getBookings();
   }
 
@@ -21,6 +23,19 @@ export class GetBookingsComponent {
       this.isSpinning = false;
       console.log(res);
       this.bookings = res;
+    })
+  }
+
+  changeBookingStatus(bookingId: number, status: string) {
+    this.isSpinning = true;
+    console.log(bookingId, status);
+    this.adminService.changeBookingStatus(bookingId, status).subscribe((res) => {
+      this.isSpinning = false;
+      console.log(res);
+      this.getBookings();
+      this.message.success("Booking Status Changed Successfully !", { nzDuration: 5000});
+    }, error => {
+      this.message.error("Something Went Wrong", { nzDuration: 5000 });
     })
   }
 
